@@ -65,20 +65,20 @@ const languageIcons: Record<string, { icon: React.ElementType; color: string }> 
 const skillCategories = [
   {
     level: "Avanzato",
-    color: "text-emerald-500 dark:text-emerald-400",
-    borderColor: "border-emerald-200 dark:border-emerald-400/20",
+    color: "text-foreground",
+    borderColor: "border-zinc-200 dark:border-zinc-700",
     skills: ["C", "C++", "Java", "MySQL"],
   },
   {
     level: "Intermedio",
-    color: "text-blue-500 dark:text-blue-400",
-    borderColor: "border-blue-200 dark:border-blue-400/20",
+    color: "text-foreground",
+    borderColor: "border-zinc-200 dark:border-zinc-700",
     skills: ["Dart", "Flutter", "PostgreSQL", "HTML", "CSS", "JavaScript", "Supabase", "PHP"],
   },
   {
     level: "Base",
-    color: "text-amber-500 dark:text-amber-400",
-    borderColor: "border-amber-200 dark:border-amber-400/20",
+    color: "text-foreground",
+    borderColor: "border-zinc-200 dark:border-zinc-700",
     skills: ["Bash", "Wireshark", "Nmap", "Metasploit"],
   },
 ]
@@ -113,7 +113,7 @@ export function SkillsSection() {
             <motion.div key={category.level} variants={itemVariants}>
               <Card className={`h-full bg-white dark:bg-zinc-900/50 ${category.borderColor} border`}>
                 <CardHeader className="pb-4">
-                  <CardTitle className={`text-xl ${category.color}`}>
+                  <CardTitle className="text-xl text-foreground">
                     {category.level}
                   </CardTitle>
                 </CardHeader>
@@ -153,7 +153,7 @@ export function SkillsSection() {
         >
           <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-700">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl text-white dark:text-white">
+              <CardTitle className="text-xl text-foreground">
                 Sistemi Operativi
               </CardTitle>
             </CardHeader>
