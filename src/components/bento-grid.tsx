@@ -61,7 +61,7 @@ export function BentoGrid() {
         <Card className="h-full bg-zinc-100 border-zinc-200 dark:bg-zinc-900 dark:border-zinc-700">
           <CardContent className="flex items-center justify-center gap-3 h-full p-6">
             <div className="text-center">
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">Current Position</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">Posizione attuale</p>
               <p className="text-lg font-semibold text-foreground">Studente @ Università Ca' Foscari</p>
             </div>
           </CardContent>

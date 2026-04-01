@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button"
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Progetti", href: "#projects" },
+  { label: "Esperienza", href: "#experience" },
+  { label: "Contatti", href: "#contact" },
 ]
 
 export function Header() {
