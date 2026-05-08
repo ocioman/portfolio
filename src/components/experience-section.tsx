@@ -154,7 +154,7 @@ export function ExperienceSection() {
                       <div>
                         <CardTitle className="text-lg text-foreground">{exp.title}</CardTitle>
                         <CardDescription className="text-muted-foreground">
-                          {exp.company} • {exp.location}
+                          {exp.company}
                         </CardDescription>
                       </div>
                     </div>
