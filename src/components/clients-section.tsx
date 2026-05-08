@@ -3,16 +3,26 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 const clients = [
   {
     name: "Renton Fitness",
-    logo: "/assets/Renton_Rehab_logo.svg",
+    logoDark: "/assets/Renton_Rehab_logo.svg",
+    logoLight: "/assets/Renton_Rehab_logo_light.svg",
     url: "https://rentonfitness.it",
   },
 ]
 
 export function ClientsSection() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <section id="clients" className="py-20 px-4 md:px-6">
       <div className="container max-w-6xl mx-auto">
@@ -38,34 +48,41 @@ export function ClientsSection() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="flex flex-wrap justify-center gap-8"
         >
-          {clients.map((client) => (
-            <a
-              key={client.name}
-              href={client.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
-            >
-              <div className="flex flex-col items-center justify-center bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-700 rounded-2xl px-10 py-8 w-72 shadow-sm hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-500 transition-all duration-300">
+          {clients.map((client) => {
+            const logoSrc =
+              !mounted || resolvedTheme === "dark"
+                ? client.logoDark
+                : client.logoLight
 
-                <div className="w-full flex items-center justify-center mb-4">
-                  <Image
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    width={220}
-                    height={80}
-                    className="object-contain"
-                    style={{ filter: "none" }}
-                  />
+            return (
+              <a
+                key={client.name}
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-700 rounded-2xl px-10 py-8 w-72 shadow-sm hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-500 transition-all duration-300">
+
+                  <div className="w-full flex items-center justify-center mb-4">
+                    <Image
+                      src={logoSrc}
+                      alt={`${client.name} logo`}
+                      width={220}
+                      height={80}
+                      className="object-contain"
+                      style={{ filter: "none" }}
+                    />
+                  </div>
+
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-zinc-400 dark:text-[#d4d4d8] group-hover:underline">
+                    {client.url.replace("https://", "")}
+                    <ExternalLink className="w-3 h-3" />
+                  </span>
                 </div>
-
-                <span className="inline-flex items-center gap-1 text-xs font-medium text-zinc-400 dark:text-[#d4d4d8] group-hover:underline">
-                  {client.url.replace("https://", "")}
-                  <ExternalLink className="w-3 h-3" />
-                </span>
-              </div>
-            </a>
-          ))}
+              </a>
+            )
+          })}
         </motion.div>
       </div>
     </section>
