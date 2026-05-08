@@ -34,6 +34,17 @@ const itemVariants = {
 
 const experiences = [
   {
+    title: "Web Developer",
+    company: "Freelance",
+    location: "Treviso, Italia",
+    period: "Marzo 2026 – Oggi",
+    icon: Briefcase,
+    color: "text-emerald-500 dark:text-emerald-400",
+    bgColor: "bg-emerald-100 dark:bg-emerald-400/10",
+    description: "Sviluppo di siti e applicativi web per le imprese",
+    achievements: [],
+  },
+  {
     title: "Tecnico della Sicurezza IT (Erasmus+)",
     company: "IT Encore",
     location: "Madrid, Spagna",
@@ -114,21 +125,25 @@ export function ExperienceSection() {
                 className="relative mb-8 w-full pl-12 md:pl-16"
               >
 
-                <motion.div
-                  className="absolute top-6 w-4 h-4 rounded-full bg-emerald-400 dark:bg-emerald-500 border-2 border-white dark:border-emerald-300 z-10 left-4 md:left-8 transform -translate-x-1/2"
-                  animate={{
-                    boxShadow: [
-                      "0 0 0px 0px rgba(52, 211, 153, 0)",
-                      "0 0 8px 4px rgba(52, 211, 153, 0.6)",
-                      "0 0 0px 0px rgba(52, 211, 153, 0)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                {index === 0 ? (
+                  <motion.div
+                    className="absolute top-6 w-4 h-4 rounded-full bg-emerald-400 dark:bg-emerald-500 border-2 border-white dark:border-emerald-300 z-10 left-4 md:left-8 transform -translate-x-1/2"
+                    animate={{
+                      boxShadow: [
+                        "0 0 0px 0px rgba(52, 211, 153, 0)",
+                        "0 0 8px 4px rgba(52, 211, 153, 0.6)",
+                        "0 0 0px 0px rgba(52, 211, 153, 0)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ) : (
+                  <div className="absolute top-6 w-4 h-4 rounded-full bg-zinc-400 dark:bg-zinc-600 border-2 border-white dark:border-zinc-500 z-10 left-4 md:left-8 transform -translate-x-1/2" />
+                )}
 
                 <Card className={`bg-white dark:bg-zinc-900/50 border-zinc-300 dark:border-zinc-700 shadow-sm dark:shadow-none`}>
                   <CardHeader className="pb-4">
@@ -152,18 +167,20 @@ export function ExperienceSection() {
                       </Badge>
                       <Badge variant="outline" className="border-zinc-300 dark:border-zinc-700 text-muted-foreground">
                         <MapPin className="w-3 h-3 mr-1" />
-                        Madrid
+                        {exp.location}
                       </Badge>
                     </div>
                     <p className="text-muted-foreground text-sm mb-3">{exp.description}</p>
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="text-foreground text-sm flex items-start gap-2">
-                          <ShieldCheck className="w-4 h-4 text-emerald-500 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {exp.achievements.length > 0 && (
+                      <ul className="space-y-2">
+                        {exp.achievements.map((achievement, i) => (
+                          <li key={i} className="text-foreground text-sm flex items-start gap-2">
+                            <ShieldCheck className="w-4 h-4 text-emerald-500 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
