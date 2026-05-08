@@ -3,6 +3,7 @@ import { BentoGrid } from "@/components/bento-grid"
 import { SkillsSection } from "@/components/skills-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
+import { ClientsSection } from "@/components/clients-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
+      <ClientsSection />
       <Footer />
     </main>
   )
