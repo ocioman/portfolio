@@ -92,14 +92,14 @@ export function Footer() {
                 <Mail className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="text-foreground font-semibold mb-1">Email</h3>
-              <p className="text-muted-foreground text-sm mb-3">lorenzoandreotta@gmail.com</p>
+              <p className="text-muted-foreground text-sm mb-3">info@lorenzoandreotta.dev</p>
               <Button
                 variant="outline"
                 size="sm"
                 asChild
                 className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
               >
-                <a href="mailto:lorenzoandreotta@gmail.com">
+                <a href="mailto:info@lorenzoandreotta.dev">
                   Invia email
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </a>
