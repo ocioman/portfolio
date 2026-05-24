@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Lorenzo Andreotta - Software Developer",
   description: "Personal portfolio of Lorenzo Andreotta, a Software Developer specializing in C, C++, Java, and modern web technologies.",
+  icons: {
+    icon: "/assets/l_a.svg",
+  },
 };
 
 export default function RootLayout({

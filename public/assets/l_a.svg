@@ -1,0 +1,11 @@
+<svg width="202" height="176" viewBox="0 0 202 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="cardGrad" x1="0" y1="0" x2="202" y2="176" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#18181b" />
+    <stop offset="1" stop-color="#27272a" />
+  </linearGradient>
+</defs>
+<rect width="202" height="176" fill="url(#cardGrad)"/>
+<path d="M188 0H157.5L56.7694 175.5H202L187 148.5H103L130 102.5L143 125.5H173L144.5 76L188 0Z" fill="#FFFEFE"/>
+<path d="M101 0L0 175.5H30L101 52.5L109 64.5L124 39L101 0Z" fill="white"/>
+</svg>

@@ -59,20 +59,15 @@ export function Header() {
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
       <div className="flex h-[3.25rem] w-full max-w-[54rem] items-center justify-between rounded-full border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-[#0c0c0e]/70 backdrop-blur-xl px-2 shadow-sm transition-all duration-300">
         
-        <a href="#home" className="ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.85rem] bg-[#e9f0fc] dark:bg-[#cde0ff] text-[#1c2b4b]">
+        <a href="#home" className="group ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.04]">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="1.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
+            className="w-[60%] h-[60%]"
+            viewBox="0 0 202 176" 
+            fill="none"
           >
-            <path d="M7 3v16h12" />
-            <path d="M11 3v12h8" opacity="0.4" />
+            <path d="M188 0H157.5L56.7694 175.5H202L187 148.5H103L130 102.5L143 125.5H173L144.5 76L188 0Z" fill="#FFFEFE"/>
+            <path d="M101 0L0 175.5H30L101 52.5L109 64.5L124 39L101 0Z" fill="white"/>
           </svg>
         </a>
 

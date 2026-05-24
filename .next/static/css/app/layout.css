@@ -786,6 +786,9 @@ video {
 .h-\[3\.25rem\] {
   height: 3.25rem;
 }
+.h-\[60\%\] {
+  height: 60%;
+}
 .h-full {
   height: 100%;
 }
@@ -821,6 +824,9 @@ video {
 }
 .w-\[18px\] {
   width: 18px;
+}
+.w-\[60\%\] {
+  width: 60%;
 }
 .w-full {
   width: 100%;
@@ -919,9 +925,6 @@ video {
 .rounded-2xl {
   border-radius: 1rem;
 }
-.rounded-\[0\.85rem\] {
-  border-radius: 0.85rem;
-}
 .rounded-full {
   border-radius: 9999px;
 }
@@ -964,9 +967,9 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 216 / var(--tw-border-opacity, 1));
 }
-.bg-\[\#e9f0fc\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(233 240 252 / var(--tw-bg-opacity, 1));
+.border-zinc-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(63 63 70 / var(--tw-border-opacity, 1));
 }
 .bg-background {
   background-color: hsl(var(--background));
@@ -1037,8 +1040,16 @@ video {
   --tw-gradient-to: rgb(228 228 231 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-zinc-900 {
+  --tw-gradient-from: #18181b var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(24 24 27 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .to-zinc-300 {
   --tw-gradient-to: #d4d4d8 var(--tw-gradient-to-position);
+}
+.to-zinc-800 {
+  --tw-gradient-to: #27272a var(--tw-gradient-to-position);
 }
 .object-contain {
   -o-object-fit: contain;
@@ -1187,10 +1198,6 @@ video {
 .tracking-wide {
   letter-spacing: 0.025em;
 }
-.text-\[\#1c2b4b\] {
-  --tw-text-opacity: 1;
-  color: rgb(28 43 75 / var(--tw-text-opacity, 1));
-}
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity, 1));
@@ -1327,6 +1334,12 @@ video {
 }
 .duration-300 {
   animation-duration: 300ms;
+}
+
+.hover\:scale-\[1\.04\]:hover {
+  --tw-scale-x: 1.04;
+  --tw-scale-y: 1.04;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:border-zinc-300:hover {
@@ -1480,11 +1493,6 @@ video {
 
 .dark\:bg-\[\#0c0c0e\]\/95:is(.dark *) {
   background-color: rgb(12 12 14 / 0.95);
-}
-
-.dark\:bg-\[\#cde0ff\]:is(.dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(205 224 255 / var(--tw-bg-opacity, 1));
 }
 
 .dark\:bg-blue-400\/10:is(.dark *) {
