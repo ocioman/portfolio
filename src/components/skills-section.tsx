@@ -19,7 +19,12 @@ import {
   SiWireshark,
   SiMetasploit,
   SiLinux,
-  SiMacos
+  SiMacos,
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiFramer
 } from "@icons-pack/react-simple-icons"
 
 const containerVariants = {
@@ -60,6 +65,11 @@ const languageIcons: Record<string, { icon: React.ElementType; color: string }> 
   "Wireshark": { icon: SiWireshark, color: "#1679A7" },
   "Nmap": { icon: Radar, color: "#1679A7" },
   "Metasploit": { icon: SiMetasploit, color: "#E12828" },
+  "Next.js": { icon: SiNextdotjs, color: "#000000" },
+  "React": { icon: SiReact, color: "#61DAFB" },
+  "TypeScript": { icon: SiTypescript, color: "#3178C6" },
+  "Tailwind CSS": { icon: SiTailwindcss, color: "#06B6D4" },
+  "Framer Motion": { icon: SiFramer, color: "#F107A3" },
 }
 
 const skillCategories = [
@@ -67,13 +77,25 @@ const skillCategories = [
     level: "Avanzato",
     color: "text-foreground",
     borderColor: "border-zinc-200 dark:border-zinc-700",
-    skills: ["C", "C++", "Java", "MySQL"],
+    skills: ["C", "C++", "Java", "MySQL", "Dart", "Flutter"],
   },
   {
     level: "Intermedio",
     color: "text-foreground",
     borderColor: "border-zinc-200 dark:border-zinc-700",
-    skills: ["Dart", "Flutter", "PostgreSQL", "HTML", "CSS", "JavaScript", "Supabase", "PHP"],
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "PostgreSQL",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Supabase",
+      "PHP"
+    ],
   },
   {
     level: "Base",
