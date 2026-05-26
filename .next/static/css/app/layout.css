@@ -1200,6 +1200,9 @@ video {
 .pt-8 {
   padding-top: 2rem;
 }
+.pt-16 {
+  padding-top: 4rem;
+}
 .text-center {
   text-align: center;
 }
@@ -1818,6 +1821,10 @@ video {
 
   .md\:pt-40 {
     padding-top: 10rem;
+  }
+
+  .md\:pt-24 {
+    padding-top: 6rem;
   }
 
   .md\:text-2xl {

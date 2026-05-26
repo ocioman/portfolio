@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ArrowLeft, Shield, HardDrive, Globe, Cookie, UserCheck, Mail } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -25,9 +24,7 @@ export default function PrivacyPolicy() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Header />
-
-      <section className="container max-w-4xl mx-auto px-4 pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="container max-w-4xl mx-auto px-4 pt-16 pb-16 md:pt-24 md:pb-24">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
