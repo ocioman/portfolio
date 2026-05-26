@@ -6,11 +6,11 @@ import { Moon, Sun, X, AlignRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Progetti", href: "#projects" },
-  { label: "Esperienza", href: "#experience" },
-  { label: "Contatti", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Progetti", href: "/#projects" },
+  { label: "Esperienza", href: "/#experience" },
+  { label: "Contatti", href: "/#contact" },
 ]
 
 export function Header() {
@@ -38,7 +38,10 @@ export function Header() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
     
-    const sections = navItems.map(item => document.getElementById(item.href.substring(1))).filter(Boolean)
+    const sections = navItems.map(item => {
+      const hash = item.href.split('#')[1]
+      return hash ? document.getElementById(hash) : null
+    }).filter(Boolean) as HTMLElement[]
     
     sections.forEach(sec => {
       if(sec) observer.observe(sec)
@@ -59,7 +62,7 @@ export function Header() {
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
       <div className="flex h-[3.25rem] w-full max-w-[54rem] items-center justify-between rounded-full border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-[#0c0c0e]/70 backdrop-blur-xl px-2 shadow-sm transition-all duration-300">
         
-        <a href="#home" className="group ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.04]">
+        <a href="/#home" className="group ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.04]">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             className="w-[60%] h-[60%]"
@@ -73,7 +76,7 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1)
+            const isActive = activeSection === item.href.split('#')[1]
             return (
               <a
                 key={item.label}
@@ -127,7 +130,7 @@ export function Header() {
         <div className="md:hidden absolute top-[4.5rem] w-full max-w-[54rem] rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-[#0c0c0e]/95 backdrop-blur-xl p-4 shadow-lg origin-top animate-in fade-in zoom-in-95">
           <nav className="flex flex-col space-y-1">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1)
+              const isActive = activeSection === item.href.split('#')[1]
               return (
                 <a
                   key={item.label}

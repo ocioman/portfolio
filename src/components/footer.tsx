@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -7,6 +9,8 @@ import { Github, Mail, Code, Phone, ExternalLink } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const pathname = usePathname()
+  const isPrivacyPolicy = pathname === "/privacy-policy"
 
   return (
     <footer id="contact" className="border-t border-border bg-zinc-50 dark:bg-zinc-900/50">
@@ -131,9 +135,17 @@ export function Footer() {
         </motion.div>
 
         <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 text-center">
             <p className="text-muted-foreground text-sm">
               © {currentYear} Lorenzo Andreotta. Tutti i diritti riservati.
+              {!isPrivacyPolicy && (
+                <>
+                  {" "} -{" "}
+                  <Link href="/privacy-policy" className="hover:text-foreground transition-colors underline-offset-4 hover:underline">
+                    Privacy Policy
+                  </Link>
+                </>
+              )}
             </p>
           </div>
         </div>
