@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Coffee } from "lucide-react"
-import { SiC, SiDart, SiFlutter, SiPhp } from "@icons-pack/react-simple-icons"
+import { SiC, SiDart, SiFlutter, SiPhp, SiCplusplus, SiCmake, SiMake } from "@icons-pack/react-simple-icons"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,6 +33,9 @@ const languageIcons: Record<string, { icon: React.ElementType; color: string }> 
   "Dart": { icon: SiDart, color: "#00B4AB" },
   "Flutter": { icon: SiFlutter, color: "#42A5F5" },
   "PHP": { icon: SiPhp, color: "#777BB4" },
+  "C++": { icon: SiCplusplus, color: "#5A9FD4" },
+  "CMake": { icon: SiCmake, color: "#064F8C" },
+  "Makefile": { icon: SiMake, color: "#008FBA" },
 }
 
 const projects = [
@@ -53,15 +56,15 @@ const projects = [
     bgColor: "bg-violet-100 dark:bg-violet-400/10",
   },
   {
-    title: "Progetto-Interdisciplinare",
-    description: "Applicativo grafico per una palestra fittizzia volto al consolidamento dell'utilizzo del pattern MVC.",
-    technologies: ["Java"],
-    github: "https://github.com/ocioman/Progetto-Interdisciplinare",
+    title: "Parser di attributi XML",
+    description: "Un semplice parser ricorsivo che trasforma gli attributi dei self-closing tags XML in una struttura key-value.",
+    technologies: ["C++", "CMake"],
+    github: "https://github.com/ocioman/xml_attribute_parser",
     color: "text-orange-500 dark:text-orange-400",
     bgColor: "bg-orange-100 dark:bg-orange-400/10",
   },
   {
-    title: "gioco-rpg",
+    title: "CLI Game",
     description: "Un gioco RPG cli-style sviluppato per un esame universitario.",
     technologies: ["C"],
     github: "https://github.com/ocioman/gioco-rpg",
@@ -155,7 +158,7 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center mt-8"
+          className="text-center mt-12"
         >
           <Button
             variant="outline"
@@ -172,6 +175,34 @@ export function ProjectsSection() {
               <ExternalLink className="w-4 h-4 ml-2" />
             </a>
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-16 text-center"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-6">
+            Aree di interesse
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              "SaaS",
+              "Sviluppo Web Frontend",
+              "Sviluppo di Algoritmi e Strutture Dati",
+              "Low Level Programming",
+              "Object Oriented Programming"
+            ].map((area) => (
+              <span
+                key={area}
+                className="px-4 py-2 rounded-full bg-white dark:bg-zinc-900/50 text-zinc-800 dark:text-zinc-200 font-medium text-sm border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-colors"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

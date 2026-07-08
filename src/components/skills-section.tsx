@@ -27,6 +27,20 @@ import {
   SiFramer
 } from "@icons-pack/react-simple-icons"
 
+const AsmIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <polygon points="6.5 2 17.5 2 23 12 17.5 22 6.5 22 1 12" />
+    <text x="12" y="12" fontSize="7.5" fontWeight="900" fontFamily="sans-serif" textAnchor="middle" dominantBaseline="central" fill="#ffffff">ASM</text>
+  </svg>
+)
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -51,6 +65,7 @@ const itemVariants = {
 const languageIcons: Record<string, { icon: React.ElementType; color: string }> = {
   "C": { icon: SiC, color: "#5A9FD4" },
   "C++": { icon: SiCplusplus, color: "#5A9FD4" },
+  "Assembly ArmV8": { icon: AsmIcon, color: "#2B5E91" },
   "Java": { icon: Coffee, color: "#f89820" },
   "MySQL": { icon: SiMysql, color: "#F29111" },
   "Dart": { icon: SiDart, color: "#00B4AB" },
@@ -77,7 +92,7 @@ const skillCategories = [
     level: "Avanzato",
     color: "text-foreground",
     borderColor: "border-zinc-200 dark:border-zinc-700",
-    skills: ["C", "C++", "Java", "MySQL", "Dart", "Flutter"],
+    skills: ["C", "C++", "Assembly ArmV8", "Java", "MySQL", "Dart", "Flutter"],
   },
   {
     level: "Intermedio",
