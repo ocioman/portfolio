@@ -49,7 +49,7 @@ const projects = [
   },
   {
     title: "smartlog",
-    description: "Un semplice ma efficiente logbook per tracciare le progressioni in palestra. È BaaS-free grazie al backend realizzato in PHP (w/JSON).",
+    description: "Il LogBook di cui non posso fare a meno per tracciare le progressioni in palestra. È BaaS-free grazie al backend realizzato in PHP (w/JSON).",
     technologies: ["Dart", "Flutter", "PHP"],
     github: "https://github.com/ocioman/smartlog",
     color: "text-violet-500 dark:text-violet-400",
@@ -57,7 +57,7 @@ const projects = [
   },
   {
     title: "Parser di attributi XML",
-    description: "Un semplice parser ricorsivo che trasforma gli attributi dei self-closing tags XML in una struttura key-value.",
+    description: "Un parser ricorsivo che trasforma gli attributi dei self-closing tags XML in una struttura key-value.",
     technologies: ["C++", "CMake"],
     github: "https://github.com/ocioman/xml_attribute_parser",
     color: "text-orange-500 dark:text-orange-400",
