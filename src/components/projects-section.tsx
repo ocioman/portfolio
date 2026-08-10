@@ -1,9 +1,10 @@
 "use client"
 //imports
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink, Coffee } from "lucide-react"
+import { Github, ExternalLink, Coffee, Zap } from "lucide-react"
 import { SiC, SiDart, SiFlutter, SiPhp, SiCplusplus, SiCmake, SiMake, SiGo } from "@icons-pack/react-simple-icons"
 
 const containerVariants = {
@@ -39,7 +40,15 @@ const languageIcons: Record<string, { icon: React.ElementType; color: string }> 
   "Go": { icon: SiGo, color: "#00ADD8" },
 }
 
-const projects = [
+const projects: {
+  title: string
+  description: string
+  technologies: string[]
+  github: string
+  color: string
+  bgColor: string
+  demoUrl?: string
+}[] = [
   {
     title: "unilife",
     description: "L'app che Ca' Foscari non ha mai fatto. Flutter + BaaS per voti, esami e lezioni in un unico posto.",
@@ -71,6 +80,7 @@ const projects = [
     github: "https://github.com/ocioman/csvJSONize",
     color: "text-emerald-500 dark:text-emerald-400",
     bgColor: "bg-emerald-100 dark:bg-emerald-400/10",
+    demoUrl: "/csvjsonize",
   },
 ]
 
@@ -129,24 +139,38 @@ export function ProjectsSection() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => {
-                      const iconData = languageIcons[tech] || languageIcons["C"]
-                      const TechIcon = iconData.icon
-                      
-                      return (
-                        <div
-                          key={tech}
-                          className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-                          title={tech}
-                        >
-                          <TechIcon 
-                            className="w-6 h-6" 
-                            style={{ color: iconData.color }}
-                          />
-                        </div>
-                      )
-                    })}
+                  <div className="flex items-end justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => {
+                        const iconData = languageIcons[tech] || languageIcons["C"]
+                        const TechIcon = iconData.icon
+                        
+                        return (
+                          <div
+                            key={tech}
+                            className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+                            title={tech}
+                          >
+                            <TechIcon 
+                              className="w-6 h-6" 
+                              style={{ color: iconData.color }}
+                            />
+                          </div>
+                        )
+                      })}
+                    </div>
+                    {project.demoUrl && (
+                      <Button
+                        size="sm"
+                        asChild
+                        className="shrink-0 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white rounded-lg px-4 h-9 text-xs font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
+                      >
+                        <Link href={project.demoUrl}>
+                          <Zap className="w-3.5 h-3.5 mr-1.5" />
+                          Testalo ora!
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>

@@ -11,6 +11,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
   const pathname = usePathname()
   const isPrivacyPolicy = pathname === "/privacy-policy"
+  // /csvjsonize shows the privacy link (same as home)
 
   return (
     <footer id="contact" className="border-t border-border bg-zinc-50 dark:bg-zinc-900/50">
