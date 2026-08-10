@@ -1,30 +1,39 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Coffee, Radar } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 import {
   SiC,
   SiCplusplus,
-  SiMysql,
   SiDart,
-  SiFlutter,
-  SiPostgresql,
+  SiJavascript,
+  SiTypescript,
+  SiPhp,
   SiHtml5,
   SiCss,
-  SiJavascript,
-  SiPhp,
   SiGnubash,
+  SiGithub,
+  SiGit,
+  SiPostman,
   SiSupabase,
-  SiWireshark,
-  SiMetasploit,
-  SiLinux,
-  SiMacos,
+  SiJetbrains,
+  SiNotion,
+  SiObsidian,
   SiNextdotjs,
   SiReact,
-  SiTypescript,
+  SiFlutter,
   SiTailwindcss,
-  SiFramer
+  SiFramer,
+  SiPostgresql,
+  SiMysql,
+  SiNodedotjs,
+  SiVercel,
+  SiDebian,
+  SiGooglegemini,
+  SiWireshark,
+  SiMetasploit,
+  SiBurpsuite
 } from "@icons-pack/react-simple-icons"
 
 const AsmIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -41,174 +50,334 @@ const AsmIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+type CustomImageProps = {
+  src: string;
+  alt: string;
+  className?: string;
+  invertInDark?: boolean;
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
+const CustomImage = ({ src, alt, className, invertInDark }: CustomImageProps) => (
+  <div className={`relative w-8 h-8 ${className || ""} ${invertInDark ? "dark:invert" : ""}`}>
+    <Image src={src} alt={alt} fill className="object-contain" />
+  </div>
+)
 
-const languageIcons: Record<string, { icon: React.ElementType; color: string }> = {
-  "C": { icon: SiC, color: "#5A9FD4" },
-  "C++": { icon: SiCplusplus, color: "#5A9FD4" },
-  "Assembly ArmV8": { icon: AsmIcon, color: "#2B5E91" },
-  "Java": { icon: Coffee, color: "#f89820" },
-  "MySQL": { icon: SiMysql, color: "#F29111" },
-  "Dart": { icon: SiDart, color: "#00B4AB" },
-  "Flutter": { icon: SiFlutter, color: "#42A5F5" },
-  "PostgreSQL": { icon: SiPostgresql, color: "#336791" },
-  "HTML": { icon: SiHtml5, color: "#E34F26" },
-  "CSS": { icon: SiCss, color: "#1572B6" },
-  "JavaScript": { icon: SiJavascript, color: "#F7DF1E" },
-  "PHP": { icon: SiPhp, color: "#777BB4" },
-  "Bash": { icon: SiGnubash, color: "#4EAA25" },
-  "Supabase": { icon: SiSupabase, color: "#3ECF8E" },
-  "Wireshark": { icon: SiWireshark, color: "#1679A7" },
-  "Nmap": { icon: Radar, color: "#1679A7" },
-  "Metasploit": { icon: SiMetasploit, color: "#E12828" },
-  "Next.js": { icon: SiNextdotjs, color: "#000000" },
-  "React": { icon: SiReact, color: "#61DAFB" },
-  "TypeScript": { icon: SiTypescript, color: "#3178C6" },
-  "Tailwind CSS": { icon: SiTailwindcss, color: "#06B6D4" },
-  "Framer Motion": { icon: SiFramer, color: "#F107A3" },
+type SkillItem = {
+    name: string;
+    icon?: React.ElementType;
+    custom?: string;
+    color?: string;
+    adaptToTheme?: boolean;
+    invertInDark?: boolean;
 }
 
 const skillCategories = [
   {
-    level: "Avanzato",
-    color: "text-foreground",
-    borderColor: "border-zinc-200 dark:border-zinc-700",
-    skills: ["C", "C++", "Assembly ArmV8", "Java", "MySQL", "Dart", "Flutter"],
-  },
-  {
-    level: "Intermedio",
-    color: "text-foreground",
-    borderColor: "border-zinc-200 dark:border-zinc-700",
+    id: "linguaggi",
+    label: "Linguaggi",
     skills: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "PostgreSQL",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Supabase",
-      "PHP"
+      { name: "C", icon: SiC, color: "#A8B9CC" },
+      { name: "C++", icon: SiCplusplus, color: "#00599C" },
+      { name: "Assembly ArmV8", icon: AsmIcon, color: "#0091BD" },
+      { name: "Java", custom: "/assets/Java.svg" },
+      { name: "Dart", icon: SiDart, color: "#0175C2" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { name: "PHP", icon: SiPhp, color: "#777BB4" },
+      { name: "HTML", icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS", icon: SiCss, color: "#1572B6" },
+      { name: "Go", custom: "/assets/go.svg" },
+      { name: "Bash", icon: SiGnubash, color: "#4EAA25" },
     ],
   },
   {
-    level: "Base",
-    color: "text-foreground",
-    borderColor: "border-zinc-200 dark:border-zinc-700",
-    skills: ["Bash", "Wireshark", "Nmap", "Metasploit"],
+    id: "devops",
+    label: "DevOps & Tools",
+    skills: [
+      { name: "GitHub", icon: SiGithub, adaptToTheme: true },
+      { name: "Git", icon: SiGit, color: "#F05032" },
+      { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+      { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
+      { name: "VSCode", custom: "/assets/vscode.svg" },
+      { name: "JetBrains", icon: SiJetbrains, adaptToTheme: true },
+      { name: "Notion", icon: SiNotion, adaptToTheme: true },
+      { name: "Obsidian", icon: SiObsidian, color: "#483699" },
+      { name: "Next.js", icon: SiNextdotjs, adaptToTheme: true },
+      { name: "React", icon: SiReact, color: "#61DAFB" },
+      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+      { name: "Vercel", icon: SiVercel, adaptToTheme: true },
+      { name: "Windows", custom: "/assets/windows.svg" },
+      { name: "Debian Linux", icon: SiDebian, color: "#A81D33" },
+      { name: "macOS", custom: "/assets/apple.svg", invertInDark: true },
+    ],
+  },
+  {
+    id: "ai",
+    label: "AI",
+    skills: [
+      { name: "Claude Code", custom: "/assets/claudecode-color.svg" },
+      { name: "Gemini", icon: SiGooglegemini, color: "#8E75B2" },
+      { name: "Antigravity", custom: "/assets/antigravity.svg" },
+    ],
+  },
+  {
+    id: "cybersecurity",
+    label: "Cybersecurity",
+    skills: [
+      { name: "Wireshark", icon: SiWireshark, color: "#1679A7" },
+      { name: "Nmap", custom: "/assets/nmap.svg", invertInDark: true },
+      { name: "Metasploit", icon: SiMetasploit, color: "#227092" },
+      { name: "Burp Suite", icon: SiBurpsuite, color: "#FF6633" },
+    ],
   },
 ]
 
-export function SkillsSection() {
+const ScrollRow = ({ skills }: { skills: SkillItem[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const innerRef = useRef<HTMLDivElement>(null)
+  
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null)
+  const [isInteracting, setIsInteracting] = useState(false)
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Drag to scroll state
+  const [isDragging, setIsDragging] = useState(false)
+  const lastXRef = useRef(0)
+  
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const getSortedChildren = (el: HTMLElement) => {
+        return Array.from(el.children).sort((a, b) => {
+            const orderA = parseInt((a as HTMLElement).style.order || "0");
+            const orderB = parseInt((b as HTMLElement).style.order || "0");
+            return orderA - orderB;
+        });
+    }
+
+    const scroll = () => {
+      const el = scrollRef.current;
+      const inner = innerRef.current;
+      if (el && inner) {
+        
+        // Auto-scroll (solo se non interagisce)
+        if (!activeTooltip && !isInteracting && !isDragging) {
+            if (el.scrollWidth > el.clientWidth) {
+                el.scrollLeft += 1;
+            }
+        }
+        
+        // Logica di riposizionamento infinito (eseguita sempre per supportare il drag continuo)
+        if (el.scrollWidth > el.clientWidth) {
+            let sorted = getSortedChildren(inner);
+            
+            // Se scorriamo a destra oltre il primo elemento, spostiamolo in fondo
+            while (el.scrollLeft > (sorted[0] as HTMLElement).offsetWidth + 1) {
+                const first = sorted[0] as HTMLElement;
+                const last = sorted[sorted.length - 1] as HTMLElement;
+                first.style.order = (parseInt(last.style.order || "0") + 1).toString();
+                el.scrollLeft -= first.offsetWidth;
+                sorted = getSortedChildren(inner);
+            }
+            
+            // Se arriviamo al margine sinistro, prendiamo l'ultimo elemento e lo mettiamo all'inizio
+            while (el.scrollLeft < 1) {
+                const last = sorted[sorted.length - 1] as HTMLElement;
+                const first = sorted[0] as HTMLElement;
+                last.style.order = (parseInt(first.style.order || "0") - 1).toString();
+                el.scrollLeft += last.offsetWidth;
+                sorted = getSortedChildren(inner);
+            }
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll)
+    }
+    
+    animationFrameId = requestAnimationFrame(scroll)
+    
+    const handleInteraction = () => {
+        setIsInteracting(true);
+        if (interactionTimeoutRef.current) {
+            clearTimeout(interactionTimeoutRef.current);
+        }
+        interactionTimeoutRef.current = setTimeout(() => {
+            setIsInteracting(false);
+        }, 3000);
+    }
+    
+    const el = scrollRef.current;
+    if (el) {
+        el.addEventListener('touchstart', handleInteraction, {passive: true});
+        el.addEventListener('touchmove', handleInteraction, {passive: true});
+        el.addEventListener('wheel', handleInteraction, {passive: true});
+    }
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      if (interactionTimeoutRef.current) {
+          clearTimeout(interactionTimeoutRef.current);
+      }
+      if (el) {
+          el.removeEventListener('touchstart', handleInteraction);
+          el.removeEventListener('touchmove', handleInteraction);
+          el.removeEventListener('wheel', handleInteraction);
+      }
+    }
+  }, [activeTooltip, isInteracting, isDragging])
+  
+  // Drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return
+    setIsDragging(true)
+    setIsInteracting(true)
+    lastXRef.current = e.pageX
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return
+    e.preventDefault()
+    const currentX = e.pageX
+    const deltaX = currentX - lastXRef.current
+    lastXRef.current = currentX
+    // Moltiplicatore per rendere il drag più reattivo
+    scrollRef.current.scrollLeft -= deltaX * 2
+  }
+
+  const handleMouseUpOrLeave = () => {
+    setIsDragging(false)
+    if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+    }
+    interactionTimeoutRef.current = setTimeout(() => {
+        setIsInteracting(false);
+    }, 3000);
+  }
+
   return (
-    <section id="skills" className="py-20 px-4 md:px-6">
-      <div className="container max-w-6xl mx-auto">
+    <div 
+        className="w-full relative"
+        onMouseLeave={() => { setActiveTooltip(null); handleMouseUpOrLeave(); }}
+    >
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-zinc-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-zinc-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
+        
+        <div 
+            ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            className={`flex overflow-x-auto scrollbar-hide px-4 md:px-24 py-16 items-center whitespace-nowrap ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+            style={{ scrollBehavior: "auto" }}
+        >
+            <div ref={innerRef} className="flex flex-shrink-0 mx-auto">
+                {skills.map((skill, idx) => (
+                    <div 
+                        key={`${skill.name}-${idx}`} 
+                        style={{ order: idx }}
+                        className="pr-4 md:pr-8 flex-shrink-0"
+                    >
+                        <div 
+                            className={`relative flex flex-col items-center justify-center p-4 rounded-2xl bg-white dark:bg-zinc-900 shadow-sm transition-all border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 group ${isDragging ? 'pointer-events-none' : 'hover:shadow-md'}`}
+                            onClick={() => !isDragging && setActiveTooltip(activeTooltip === skill.name + idx ? null : skill.name + idx)}
+                            onMouseEnter={() => !isDragging && setActiveTooltip(skill.name + idx)}
+                            onMouseLeave={() => setActiveTooltip(null)}
+                        >
+                            {skill.custom ? (
+                                <CustomImage src={skill.custom} alt={skill.name} invertInDark={skill.invertInDark} className={`transition-transform duration-300 ${isDragging ? '' : 'group-hover:scale-110'}`} />
+                            ) : skill.icon ? (
+                                <skill.icon 
+                                    className={`w-8 h-8 transition-transform duration-300 ${isDragging ? '' : 'group-hover:scale-110'} ${skill.adaptToTheme ? 'text-zinc-900 dark:text-zinc-100' : ''}`} 
+                                    style={skill.adaptToTheme ? undefined : { color: skill.color }} 
+                                />
+                            ) : null}
+                            
+                            <AnimatePresence>
+                                {activeTooltip === skill.name + idx && !isDragging && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, x: "-50%", scale: 0.95 }}
+                                        transition={{ duration: 0.15 }}
+                                        className="absolute -top-12 left-1/2 px-3 py-1.5 bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-sm font-medium rounded-lg shadow-xl whitespace-nowrap z-20 pointer-events-none"
+                                    >
+                                        {skill.name}
+                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-900 dark:bg-zinc-100 rotate-45" />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export function SkillsSection() {
+  const [activeCategory, setActiveCategory] = useState(skillCategories[0].id)
+  const activeSkills = skillCategories.find(c => c.id === activeCategory)?.skills || []
+
+  return (
+    <section id="skills" className="py-24 bg-zinc-50 dark:bg-zinc-950 overflow-hidden">
+      <div className="container px-4 md:px-6 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Competenze Tecniche
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-zinc-900 dark:text-zinc-100">
+            Competenze & Tecnologie
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Un panorama delle tecnologie e degli strumenti che utilizzo nello sviluppo software
+          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+            Il mio arsenale di strumenti, linguaggi e framework che utilizzo per dare vita alle idee.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {skillCategories.map((category) => (
-            <motion.div key={category.level} variants={itemVariants}>
-              <Card className={`h-full bg-white dark:bg-zinc-900/50 ${category.borderColor} border`}>
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-foreground">
-                    {category.level}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-3">
-                    {category.skills.map((skill) => {
-                      const iconData = languageIcons[skill] || languageIcons["C"]
-                      const IconComponent = iconData.icon
-                      
-                      return (
-                        <div
-                          key={skill}
-                          className="p-3 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors group"
-                          title={skill}
-                        >
-                          <IconComponent 
-                            className="w-8 h-8" 
-                            style={{ color: iconData.color }}
-                          />
-                        </div>
-                      )
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Categories Menu */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 p-2 bg-white dark:bg-zinc-900 rounded-2xl max-w-fit mx-auto border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            {skillCategories.map(cat => (
+                <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`relative px-4 py-2 text-sm md:text-base font-medium rounded-xl transition-colors duration-200 ${
+                        activeCategory === cat.id 
+                            ? "text-zinc-900 dark:text-zinc-100" 
+                            : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    }`}
+                >
+                    {activeCategory === cat.id && (
+                        <motion.div 
+                            layoutId="activeCategoryPill"
+                            className="absolute inset-0 bg-zinc-100 dark:bg-zinc-800 rounded-xl shadow-sm border border-zinc-200 dark:border-zinc-700"
+                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        />
+                    )}
+                    <span className="relative z-10">{cat.label}</span>
+                </button>
+            ))}
+        </div>
 
-        <motion.div
-          variants={itemVariants}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6"
-        >
-          <Card className="bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-700">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-xl text-foreground">
-                Sistemi Operativi
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
-                  Windows
-                </span>
-                <span className="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
-                  Debian Linux
-                </span>
-                <span className="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
-                  macOS
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        {/* Skills Row with Auto-Scroll */}
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+            >
+                <ScrollRow skills={activeSkills} />
+            </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   )
