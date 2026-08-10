@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Coffee } from "lucide-react"
-import { SiC, SiDart, SiFlutter, SiPhp, SiCplusplus, SiCmake, SiMake } from "@icons-pack/react-simple-icons"
+import { SiC, SiDart, SiFlutter, SiPhp, SiCplusplus, SiCmake, SiMake, SiGo } from "@icons-pack/react-simple-icons"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -36,6 +36,7 @@ const languageIcons: Record<string, { icon: React.ElementType; color: string }> 
   "C++": { icon: SiCplusplus, color: "#5A9FD4" },
   "CMake": { icon: SiCmake, color: "#064F8C" },
   "Makefile": { icon: SiMake, color: "#008FBA" },
+  "Go": { icon: SiGo, color: "#00ADD8" },
 }
 
 const projects = [
@@ -64,10 +65,10 @@ const projects = [
     bgColor: "bg-orange-100 dark:bg-orange-400/10",
   },
   {
-    title: "CLI Game",
-    description: "Un gioco RPG cli-style sviluppato per un esame universitario.",
-    technologies: ["C"],
-    github: "https://github.com/ocioman/gioco-rpg",
+    title: "csvJSONize",
+    description: "Go package per serializzare e deserializzare i tuoi file csv in tempo record",
+    technologies: ["Go"],
+    github: "https://github.com/ocioman/csvJSONize",
     color: "text-emerald-500 dark:text-emerald-400",
     bgColor: "bg-emerald-100 dark:bg-emerald-400/10",
   },
