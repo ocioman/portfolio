@@ -232,24 +232,26 @@ const ScrollRow = ({ skills }: { skills: SkillItem[] }) => {
   }, [activeTooltip, isInteracting, isDragging])
   
   // Drag handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handlePointerDown = (e: React.PointerEvent) => {
     if (!scrollRef.current) return
     setIsDragging(true)
     setIsInteracting(true)
     lastXRef.current = e.pageX
+    e.currentTarget.setPointerCapture(e.pointerId)
   }
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging || !scrollRef.current) return
     e.preventDefault()
     const currentX = e.pageX
     const deltaX = currentX - lastXRef.current
     lastXRef.current = currentX
-    // Moltiplicatore per rendere il drag più reattivo
-    scrollRef.current.scrollLeft -= deltaX * 2
+    // Moltiplicatore per rendere il drag più reattivo (su mouse un po' di più)
+    const multiplier = e.pointerType === 'mouse' ? 2 : 1.5;
+    scrollRef.current.scrollLeft -= deltaX * multiplier
   }
 
-  const handleMouseUpOrLeave = () => {
+  const handlePointerUpOrLeave = (e?: React.PointerEvent | React.MouseEvent) => {
     setIsDragging(false)
     if (interactionTimeoutRef.current) {
         clearTimeout(interactionTimeoutRef.current);
@@ -262,17 +264,18 @@ const ScrollRow = ({ skills }: { skills: SkillItem[] }) => {
   return (
     <div 
         className="w-full relative"
-        onMouseLeave={() => { setActiveTooltip(null); handleMouseUpOrLeave(); }}
+        onMouseLeave={() => { setActiveTooltip(null); handlePointerUpOrLeave(); }}
     >
         <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-zinc-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-zinc-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
         
         <div 
             ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
-            className={`flex overflow-x-auto scrollbar-hide px-4 md:px-24 py-16 items-center whitespace-nowrap ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUpOrLeave}
+            onPointerCancel={handlePointerUpOrLeave}
+            className={`flex overflow-hidden touch-pan-y scrollbar-hide px-4 md:px-24 py-16 items-center whitespace-nowrap ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
             style={{ scrollBehavior: "auto" }}
         >
             <div ref={innerRef} className="flex flex-shrink-0 mx-auto">
