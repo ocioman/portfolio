@@ -22,7 +22,7 @@ export interface SpecularButtonProps {
   proximity?: number;
   autoAnimate?: boolean;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLElement>;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   asChild?: boolean;
