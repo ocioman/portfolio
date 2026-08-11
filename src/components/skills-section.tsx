@@ -346,8 +346,12 @@ export function SkillsSection() {
         </motion.div>
 
         {/* Categories Menu */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 p-2 bg-white dark:bg-zinc-900 rounded-2xl max-w-fit mx-auto border border-zinc-200 dark:border-zinc-800 shadow-sm">
-            {skillCategories.map(cat => (
+        <div className="relative max-w-fit mx-auto mb-8">
+          {/* Glow effect behind the tabs to make glassmorphism pop */}
+          <div className="absolute inset-0 -top-6 -bottom-6 -left-12 -right-12 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-teal-500/20 rounded-[3rem] blur-2xl opacity-70 dark:opacity-40 z-0"></div>
+          
+          <div className="relative flex flex-wrap justify-center gap-2 md:gap-4 p-2 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-2xl rounded-2xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm z-10">
+              {skillCategories.map(cat => (
                 <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
@@ -367,6 +371,7 @@ export function SkillsSection() {
                     <span className="relative z-10">{cat.label}</span>
                 </button>
             ))}
+          </div>
         </div>
 
         {/* Skills Row with Auto-Scroll */}

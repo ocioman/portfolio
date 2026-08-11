@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import BorderGlow from "./border-glow"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,16 +35,18 @@ export function BentoGrid() {
       className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
     >
       <motion.div variants={itemVariants} className="md:col-span-2">
-        <Card className="h-full bg-gradient-to-br from-zinc-200 to-zinc-300 border-zinc-300 dark:from-zinc-900 dark:to-zinc-800 dark:border-zinc-700">
-          <CardContent className="flex flex-col justify-center h-full p-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-              Lorenzo Andreotta
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground">
-              Software Developer
-            </p>
-          </CardContent>
-        </Card>
+        <BorderGlow className="h-full p-[1px]" borderRadius={12} animated={true}>
+          <Card className="h-full bg-gradient-to-br from-zinc-200 to-zinc-300 border-none dark:from-zinc-900 dark:to-zinc-800 shadow-none">
+            <CardContent className="flex flex-col justify-center h-full p-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
+                Lorenzo Andreotta
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground">
+                Software Developer
+              </p>
+            </CardContent>
+          </Card>
+        </BorderGlow>
       </motion.div>
 
       <motion.div variants={itemVariants}>

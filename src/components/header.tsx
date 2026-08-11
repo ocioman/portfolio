@@ -94,22 +94,6 @@ export function Header() {
         </nav>
         
         <div className="flex shrink-0 items-center gap-1.5 mr-1">
-          {isMounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="h-9 w-9 rounded-full text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-[18px] w-[18px]" strokeWidth={2} />
-              ) : (
-                <Moon className="h-[18px] w-[18px]" strokeWidth={2} />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          )}
-
           <Button
             variant="ghost"
             size="icon"

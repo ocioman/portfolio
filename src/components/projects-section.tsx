@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Coffee, Zap } from "lucide-react"
 import { SiC, SiDart, SiFlutter, SiPhp, SiCplusplus, SiCmake, SiMake, SiGo } from "@icons-pack/react-simple-icons"
+import { SpecularButton } from "./specular-button"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -159,7 +160,16 @@ export function ProjectsSection() {
                         )
                       })}
                     </div>
-                    {project.demoUrl && (
+                    {project.demoUrl && project.title === "csvJSONize" ? (
+                      <Link href={project.demoUrl} className="shrink-0">
+                        <SpecularButton
+                          className="h-9 px-4 text-xs font-semibold"
+                          asChild
+                        >
+                          Testalo ora!
+                        </SpecularButton>
+                      </Link>
+                    ) : project.demoUrl ? (
                       <Button
                         size="sm"
                         asChild
@@ -170,7 +180,7 @@ export function ProjectsSection() {
                           Testalo ora!
                         </Link>
                       </Button>
-                    )}
+                    ) : null}
                   </div>
                 </CardContent>
               </Card>
@@ -185,21 +195,18 @@ export function ProjectsSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Button
-            variant="outline"
-            asChild
-            className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
-          >
+          <SpecularButton asChild className="h-10 px-4 text-sm">
             <a
               href="https://github.com/ocioman"
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center"
             >
               <Github className="w-4 h-4 mr-2" />
               Vedi tutti i progetti su GitHub
               <ExternalLink className="w-4 h-4 ml-2" />
             </a>
-          </Button>
+          </SpecularButton>
         </motion.div>
 
         <motion.div

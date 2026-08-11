@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github, Mail, Code, Phone, ExternalLink } from "lucide-react"
+import { SpecularButton } from "./specular-button"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -46,21 +47,17 @@ export function Footer() {
               </div>
               <h3 className="text-foreground font-semibold mb-1">GitHub</h3>
               <p className="text-muted-foreground text-sm mb-3">@ocioman</p>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
+              <SpecularButton asChild className="h-9 px-3 text-xs">
                 <a
                   href="https://github.com/ocioman"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center"
                 >
                   Visita profilo
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </a>
-              </Button>
+              </SpecularButton>
             </CardContent>
           </Card>
 
@@ -72,21 +69,17 @@ export function Footer() {
               </div>
               <h3 className="text-foreground font-semibold mb-1">LeetCode</h3>
               <p className="text-muted-foreground text-sm mb-3">@ocioman</p>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
+              <SpecularButton asChild className="h-9 px-3 text-xs">
                 <a
                   href="https://leetcode.com/u/ocioman/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center"
                 >
                   Vedi soluzioni
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </a>
-              </Button>
+              </SpecularButton>
             </CardContent>
           </Card>
 
@@ -98,17 +91,12 @@ export function Footer() {
               </div>
               <h3 className="text-foreground font-semibold mb-1">Email</h3>
               <p className="text-muted-foreground text-sm mb-3">info@lorenzoandreotta.dev</p>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                <a href="mailto:info@lorenzoandreotta.dev">
+              <SpecularButton asChild className="h-9 px-3 text-xs">
+                <a href="mailto:info@lorenzoandreotta.dev" className="flex items-center">
                   Invia email
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </a>
-              </Button>
+              </SpecularButton>
             </CardContent>
           </Card>
 
@@ -120,17 +108,12 @@ export function Footer() {
               </div>
               <h3 className="text-foreground font-semibold mb-1">Telefono</h3>
               <p className="text-muted-foreground text-sm mb-3">+39 3927715488</p>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="border-zinc-300 dark:border-zinc-700 text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                <a href="tel:+393927715488">
+              <SpecularButton asChild className="h-9 px-3 text-xs">
+                <a href="tel:+393927715488" className="flex items-center">
                   Chiama ora
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </a>
-              </Button>
+              </SpecularButton>
             </CardContent>
           </Card>
         </motion.div>

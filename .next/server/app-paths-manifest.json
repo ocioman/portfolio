@@ -1,4 +1,5 @@
 {
-  "/csvjsonize/page": "app/csvjsonize/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/csvjsonize/page": "app/csvjsonize/page.js"
 }

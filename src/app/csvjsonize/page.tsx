@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { SpecularButton } from "@/components/specular-button"
+import { Folder } from "@/components/folder"
 
 declare global {
   interface Window {
@@ -259,8 +261,10 @@ export default function CsvJsonizePage() {
                   exit={{ opacity: 0 }}
                   className="flex flex-col items-center gap-3 text-center"
                 >
-                  <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800">
-                    <Upload className="w-8 h-8 text-zinc-400 dark:text-zinc-500" />
+                  <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-700 flex items-center justify-center">
+                    <div className="w-8 h-8 flex items-center justify-center relative">
+                      <Folder color="#2b2a2d" size={0.4} className="absolute" />
+                    </div>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">
@@ -309,23 +313,23 @@ export default function CsvJsonizePage() {
                   <RefreshCw className="w-4 h-4" />
                 </Button>
 
-                <Button
+                <SpecularButton
                   onClick={handleConvert}
                   disabled={!wasmReady || isConverting}
-                  className="bg-foreground text-background hover:bg-foreground/90 rounded-xl px-6 h-11 font-semibold transition-all duration-200 disabled:opacity-50"
+                  className="px-6 h-11 font-semibold disabled:opacity-50"
                 >
                   {isConverting ? (
-                    <>
+                    <span className="flex items-center">
                       <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
                       Conversione…
-                    </>
+                    </span>
                   ) : (
-                    <>
+                    <span className="flex items-center">
                       <Zap className="w-4 h-4 mr-2" />
                       Converti
-                    </>
+                    </span>
                   )}
-                </Button>
+                </SpecularButton>
               </div>
             </motion.div>
           )}
